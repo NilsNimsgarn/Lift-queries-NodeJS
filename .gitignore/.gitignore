@@ -1,0 +1,31 @@
+process.stdin.resume();
+process.stdin.setEncoding("utf-8");
+var stdin_input = "";
+process.stdin.on("data", function (input) {stdin_input += input;});
+process.stdin.on("end", function () {main(stdin_input);});
+
+function main(input)
+{
+    var lineinput = input.split("\n");
+    var anzahl = lineinput[0];
+    var liftA = 0;
+    var liftB = 7;
+    
+    for(var x = 1; x <= anzahl; x++)
+    {
+        var etage = Number(lineinput[x]);
+        var diffA = Math.abs(liftA - etage);
+        var diffB = Math.abs(liftB - etage);
+
+        if (diffA <= diffB)
+        {
+            liftA += diffA;
+            console.log("A");
+        }
+        else
+        {
+            liftB -= diffB;
+            console.log("B");
+        }
+    }
+}
